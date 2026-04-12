@@ -31,7 +31,7 @@ namespace PROG_POE
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("==================================================");
-            Console.WriteLine("Welcome to the Cybersecurity Awareness Bot.");
+            Console.WriteLine("Hi! Welcome to the Cybersecurity Awareness Bot.");
             Console.WriteLine("I'm here to help you stay safe online. ");
             Console.WriteLine("==================================================");
             Console.ResetColor();
