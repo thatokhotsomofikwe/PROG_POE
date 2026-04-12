@@ -11,7 +11,7 @@ namespace PROG_POE
     {
         static void Main(string[] args)
         {
-            CybersecurityBot bot = new CybersecurityBot();
+            PROG_POE bot = new PROG_POE();
 
             bot.Run();
         }

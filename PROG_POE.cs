@@ -6,9 +6,9 @@ using System.Threading;
 
 namespace PROG_POE
 {
-    internal class CybersecurityBot
+    internal class PROG_POE
     {
-        public CybersecurityBot()
+        public PROG_POE()
         {
         }
 
