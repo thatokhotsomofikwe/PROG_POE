@@ -8,14 +8,16 @@ namespace PROG_POE
 {
     internal class PROG_POE
     {
+        public PROG_POE()
+        {
+        }
+
         private string userName = "User";
         private string botName = "A.J";
 
         public void Run()
         {
             Console.Title = $"{botName} - Cybersecurity Awareness Bot";
-            Console.SetWindowSize(120, 40);
-            Console.SetBufferSize(120, 300);
             Console.Clear();
 
             ShowHeader();
@@ -30,18 +32,16 @@ namespace PROG_POE
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("==================================================");
             Console.WriteLine("Welcome to the Cybersecurity Awareness Bot.");
-            Console.WriteLine("I'm here to help you stay safe online.");
+            Console.WriteLine("I'm here to help you stay safe online. ");
             Console.WriteLine("==================================================");
             Console.ResetColor();
             Console.WriteLine();
         }
-
         private void ShowAsciiLogo()
         {
             try
             {
                 string imagePath = Path.Combine(AppContext.BaseDirectory, "Assets", "logo.jpg");
-
                 if (!File.Exists(imagePath))
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -49,12 +49,10 @@ namespace PROG_POE
                     Console.ResetColor();
                     return;
                 }
-
                 Bitmap image = new Bitmap(imagePath);
 
                 int width = 100;
-                int height = (image.Height * width) / image.Width/2;
-
+                int height = (image.Height * width) / image.Width;
                 Bitmap resized = new Bitmap(image, new Size(width, height));
 
                 string asciiChars = "@#S%?*+;:,. ";
@@ -79,7 +77,9 @@ namespace PROG_POE
                 Console.WriteLine("[Logo could not be displayed.]");
                 Console.ResetColor();
             }
+
         }
+
 
         private void PlayGreeting()
         {
@@ -95,8 +95,10 @@ namespace PROG_POE
                     return;
                 }
 
-                SoundPlayer player = new SoundPlayer(filePath);
-                player.PlaySync();
+                using (SoundPlayer player = new SoundPlayer(filePath))
+                {
+                    player.PlaySync();
+                }
             }
             catch
             {
@@ -155,11 +157,12 @@ namespace PROG_POE
 
                 if (message == "exit" || message == "quit" || message == "bye" || message == "goodbye")
                 {
-                    PrintBotResponse($"Goodbye, {userName}. Stay safe on the net! I'm always available if you have questions about cybersecurity and online safety.");
+                    PrintBotResponse($"Goodbye, {userName}. Stay safe on the net! I'm always available if ever you have questions about cybersecurity & online safety.");
                     break;
                 }
 
-                PrintBotResponse(GetResponse(message));
+                string response = GetResponse(message);
+                PrintBotResponse(response);
             }
         }
 
@@ -175,18 +178,17 @@ namespace PROG_POE
                 return "You can ask me about passwords, phishing, safe browsing, suspicious links, and online safety.";
 
             if (message.Contains("password"))
-                return "Strong passwords should contain at least 8 characters and use a mix of upper and lower case letters, numbers, and special characters. Avoid using the same password across multiple accounts.";
+                return "Strong passwords should always contain at least 8 characters. They should be a combination of upper & lower case letters, numbers, and special characters. Avoid using the same password across multiple accounts.";
 
             if (message.Contains("phishing"))
-                return "Phishing messages often pressure you to act quickly or click suspicious links. Check the sender's details carefully before responding. If the message is from an organisation, compare it with the official contact details.";
+                return "Phishing messages often pressure you to act quickly or click suspicious links. Check the sender's details carefully before responding. If the message is from an organisation, check if the sender's details match the organisation's offical contact details.";
 
             if (message.Contains("browsing") || message.Contains("link") || message.Contains("website"))
                 return "Only open trusted links, look for correct website addresses, and avoid downloading files from unknown sources.";
-
             if (message.Contains("safety") || message.Contains("safe"))
-                return "To improve safe browsing, always look for a padlock icon next to the website address.";
-
-            return "I don't quite understand that. Try asking about purpose, passwords, phishing, browsing, or online safety.";
+                return "To ensure safe browsing, always look for a padlock icon next to the URL of whatever website you're visiting.";
+            else
+                return "I don't quite understand that. Please enter 'what is your purpose?' or 'what can I ask you about?' for a list of topics I'm informed on.";
         }
 
         private void PrintBotResponse(string message)
