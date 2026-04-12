@@ -1,0 +1,10 @@
+C:\Users\thato\source\repos\PROG_POE\bin\Debug\PROG_POE.exe.config
+C:\Users\thato\source\repos\PROG_POE\bin\Debug\PROG_POE.exe
+C:\Users\thato\source\repos\PROG_POE\bin\Debug\PROG_POE.pdb
+C:\Users\thato\source\repos\PROG_POE\obj\Debug\PROG_POE.csproj.AssemblyReference.cache
+C:\Users\thato\source\repos\PROG_POE\obj\Debug\PROG_POE.csproj.CoreCompileInputs.cache
+C:\Users\thato\source\repos\PROG_POE\obj\Debug\PROG_POE.exe
+C:\Users\thato\source\repos\PROG_POE\obj\Debug\PROG_POE.pdb
+C:\Users\thato\source\repos\PROG_POE\obj\Debug\PROG_POE.exe.config
+C:\Users\thato\source\repos\PROG_POE\bin\Debug\Assets\greet.wav
+C:\Users\thato\source\repos\PROG_POE\bin\Debug\Assets\logo.jpg
