@@ -1,0 +1,35 @@
+name: CI 
+
+on:
+  push:
+    branches:
+      - master #change this if your branch name is different
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest #keep this for .NET Framework 4.7.2
+
+    env:
+      SOLUTION_FILE: PROG_POE.sln #change this to your actual .sln file name
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x #change this only if needed
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Restore
+        run: msbuild "${{ env.SOLUTION_FILE }}" /t:Restore /p:Configuration=Release
+
+      - name: Format check
+        run: dotnet format "${{ env.SOLUTION_FILE }}" --verify-no-changes --verbosity minimal
+
+      - name: Build
+        run: msbuild "${{ env.SOLUTION_FILE }}" /p:Configuration=Release /m /p:TreatWarningsAsErrors=true
