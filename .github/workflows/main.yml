@@ -1,0 +1,37 @@
+name: .NET Framework CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # Must use windows-latest for .NET Framework 4.7.2
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: 'latest'
+
+    - name: Restore NuGet Packages
+      # Replace 'YourSolution.sln' with your actual .sln file name
+      run: PROG_POE.sln
+
+    - name: Build and Check Syntax
+      # This step captures syntax errors and successful compilation
+      run: msbuild PROG_POE.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: Check Formatting
+      # While dotnet format is for .NET Core, you can still run it 
+      # on Framework projects to verify style in GitHub Actions.
+      run: dotnet format --verify-no-changes --verbosity diagnostic
