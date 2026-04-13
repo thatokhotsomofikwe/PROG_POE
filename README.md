@@ -35,7 +35,7 @@ How to Run the Project
 
 1. Clone the repository
 
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/thatokhotsomofikwe/PROG_POE
 
 2. Open in Visual Studio
 	•	Open the .sln file in Visual Studio 2022
